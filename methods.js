@@ -202,48 +202,58 @@ const users = [
 ];
 
 // функция принимает массив и выводит в консоль все имена пользователей
-function getAllNames(array) {
-
+function getAllNames(users) {
+  users.forEach((item) => console.log(item.name));
 }
 
 getAllNames(users);
 
 // функция принимает массив и id пользователя, и выводит в консоль всю информацию (весь объект) об этом пользователе
-function getUserById(array, id) {
-
+function getUserById(array, userId) {
+  const info = array.find((item) => item.id === userId);
+  console.log(info);
 }
 
 getUserById(users, 2); // должен вывести в консоль объект юзера с id === 2
 
-// функция принимает массив и возвращает новый массив в котором у всех пользователей пропадет поле address
-function removeAddresses(array) {
 
-}
+// функция принимает массив и возвращает новый массив в котором у всех пользователей пропадет поле address
+  function removeAddresses(array) {
+    return array.map(({ address, ...rest }) => rest);
+  }
 
 console.log(removeAddresses(users));
 
 
 // функция принимает массив и id пользователя, который должен быть удален и возвращает новый массив, уже без этого пользователя.
-function deleteUser(array, id) {
-
+function deleteUser(array, userId) {
+  return array.filter((item) => item.id !== userId)
 }
 
 console.log(deleteUser(users, 1)); // массив без юзера с id === 1
 
 // функция принимает массив и id пользователя и выводит в консоль его ключ geo
-function getUsersGeo(array, id) {
-
+function getUsersGeo(array, userId) {
+  const item = array.find((item) => item.id === userId);
+  if(item){
+      console.log(item.address.geo)
+}
 }
 
 
 // функция принимает массив и id пользователя, и выводит в консоль всю информацию (весь объект) о компании этого пользователя
-function getUsersCompany(array, id) {
-
+function getUsersCompany(array, userId) {
+  const item = array.find((item) => item.id === userId);
+    console.log(item.company)
 }
 
 // функция принимает массив, id пользователя и новый номер телефона.
 // Функция возвращает новый массив с измененным номером для указанного пользователя. 
 
 function changePhone(array, id, phone) {
-  
+  return users.map((item) => {
+    if (item.id === userId) {
+      return { ...item, phone: newPhoneNumber };
+    }
+  });
 }
